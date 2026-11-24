@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的账号 · 小白搭站说明书</title>
+<meta name="description" content="用邮箱注册或登录小白搭站说明书，管理自己的社区账号。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html">
+    <span class="brand-dot"></span>
+    <span>小白搭站说明书</span>
+  </a>
+  <div class="topbar-right">
+    <a class="top-link" href="community.html">社区与反馈</a>
+    <a class="top-link" href="index.html">返回教程</a>
+  </div>
+</header>
+
+<main class="community">
+  <section class="community-hero">
+    <p class="eyebrow">账号 · 邮箱登录</p>
+    <h1>登录或注册</h1>
+    <p class="hero-sub">用邮箱注册一个账号，用来发反馈、认领自己的发言。QQ 和微信登录以后再接，先把邮箱这条链路跑通。</p>
+    <div class="hero-actions">
+      <a class="btn btn-ghost" href="community.html">去社区</a>
+      <a class="btn btn-ghost" href="index.html">返回教程</a>
+    </div>
+  </section>
+
+  <div class="setup-card" id="authSetup" hidden>
+    <strong>还差一步：创建 Supabase 项目</strong>
+    <ol class="setup-steps">
+      <li>去 <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a> 注册，新建一个免费项目。</li>
+      <li>打开左侧 SQL Editor，把 <a href="supabase-setup.sql" target="_blank" rel="noopener">supabase-setup.sql</a> 整段粘贴执行。</li>
+      <li>在 Project Settings → API 复制 Project URL 和 anon public key，填进 <code>supabase-config.js</code>，重新部署。</li>
+      <li>注册你自己的账号后，再执行 SQL 文件最后那句 <code>update</code>，把自己设成管理员。</li>
+    </ol>
+    <p class="micro">没配置之前，这里不会假装能注册，避免收了密码却存不住。</p>
+  </div>
+
+  <section class="panel" id="authPanel" hidden>
+    <div class="panel-head">
+      <h2 id="authTitle">登录</h2>
+      <span class="tag" id="authBadge">邮箱</span>
+    </div>
+    <div class="auth-tabs" id="authTabs">
+      <button type="button" class="active" data-mode="signin">登录</button>
+      <button type="button" data-mode="signup">注册</button>
+    </div>
+    <form id="authForm" class="feedback-form">
+      <div class="form-row" id="nickRow" hidden>
+        <label for="authNick">昵称</label>
+        <input type="text" id="authNick" maxlength="16" placeholder="别人怎么称呼你" autocomplete="nickname">
+      </div>
+      <div class="form-row">
+        <label for="authEmail">邮箱</label>
+        <input type="email" id="authEmail" placeholder="you@example.com" autocomplete="email" required>
+      </div>
+      <div class="form-row">
+        <label for="authPassword">密码</label>
+        <input type="password" id="authPassword" placeholder="至少 6 位" minlength="6" autocomplete="current-password" required>
+      </div>
+      <p class="form-error" id="authMsg" hidden></p>
+      <div class="form-foot">
+        <span class="micro">用邮箱注册，设置好密码就能直接登录。</span>
+        <button class="btn btn-primary" type="submit" id="authSubmit">登录</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel" id="accountPanel" hidden>
+    <div class="panel-head">
+      <h2>我的账号</h2>
+      <span class="status-pill" id="accountStatus">正常</span>
+    </div>
+    <div class="user-row">
+      <span class="avatar" id="accountAvatar">小</span>
+      <div class="user-meta">
+        <strong id="accountName">小白</strong>
+        <p id="accountEmail"></p>
+      </div>
+    </div>
+    <p class="ban-banner" id="accountBan" hidden></p>
+    <div class="rules-actions">
+      <a class="btn btn-ghost" href="community.html">去社区</a>
+      <button class="btn btn-ghost" type="button" id="passwordToggle">修改密码</button>
+      <button class="btn btn-ghost" type="button" id="signOutBtn">退出登录</button>
+    </div>
+    <form id="passwordForm" class="feedback-form password-form" hidden>
+      <div class="form-row">
+        <label for="newPassword">新密码</label>
+        <input type="password" id="newPassword" minlength="6" placeholder="至少 6 位" autocomplete="new-password" required>
+      </div>
+      <div class="form-row">
+        <label for="newPassword2">再输一次</label>
+        <input type="password" id="newPassword2" minlength="6" placeholder="和上面保持一致" autocomplete="new-password" required>
+      </div>
+      <p class="form-error" id="passwordMsg" hidden></p>
+      <div class="form-foot">
+        <span class="micro">保存后立即生效，下次用新密码登录。</span>
+        <button class="btn btn-primary" type="submit" id="passwordSubmit">保存新密码</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer class="community-foot">
+  <p>小白搭站说明书 · <a href="index.html">回到教程</a></p>
+  <nav class="pager">
+    <span class="pager-label">上一篇</span>
+    <a href="community.html">← 社区与反馈</a>
+  </nav>
+</footer>
+
+<script src="supabase-config.js"></script>
+<script src="account.js"></script>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三小时学会做网站 · 给小白的搭站说明书</title>
+<meta name="description" content="用生活例子和 C 语言类比，把搭建网站这件事拆成每个人都能听懂的小步骤。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+
+<header class="topbar">
+  <a class="brand" href="#top">
+    <span class="brand-dot"></span>
+    <span>小白搭站说明书</span>
+  </a>
+  <div class="topbar-right">
+    <a class="top-link" href="community.html">社区与反馈</a>
+    <div class="search">
+      <input id="siteSearch" type="search" placeholder="搜章节或关键词" autocomplete="off" aria-label="站内搜索">
+      <ul class="search-results" id="searchResults" hidden></ul>
+    </div>
+    <span class="topbar-tip">不需要编程基础</span>
+  </div>
+</header>
+
+<main id="top">
+  <div class="site-banner" id="siteBanner" hidden>
+    <strong>系统维护中</strong>：讨论和反馈暂停，教程正文仍可正常阅读。<a href="community.html">查看状态</a>
+  </div>
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <p class="eyebrow">从零开始 · 一步一步</p>
+    <h1>做一个网站，<br>其实和你搬一次家差不多</h1>
+    <p class="hero-sub">你只需要准备三个东西：一个文件夹、一块能放文件的地方、一个网址。剩下的，这篇说明书会一句一句讲给你听。遇到看不懂的地方，点句子后面那个小问号，解释会自己弹出来。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#ch1">开始读第一页</a>
+      <a class="btn btn-ghost" href="#checklist">直接看上线清单</a>
+      <a class="btn btn-ghost" href="starter.zip" download>下载示例文件</a>
+      <a class="btn btn-ghost" href="community.html">社区与反馈</a>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <span class="hero-card-num">01</span>
+        <h3>写一个文件</h3>
+        <p>叫 index.html，就是你网站的门面。</p>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-num">02</span>
+        <h3>放到网上</h3>
+        <p>找个免费托管平台，把文件传上去。</p>
+      </div>
+      <div class="hero-card">
+        <span class="hero-card-num">03</span>
+        <h3>拿到网址</h3>
+        <p>平台给你一个链接，发给谁都能看。</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <details class="toc" open>
+        <summary>目录</summary>
+        <nav id="tocNav">
+          <a href="#ch1">1 · 网站到底是什么</a>
+          <a href="#ch2">2 · 只需要三样东西</a>
+          <a href="#ch3">3 · 第一个网页</a>
+          <a href="#ch4">4 · 给页面化妆</a>
+          <a href="#ch5">5 · 让按钮动起来</a>
+          <a href="#ch6">6 · 图片和第二个页面</a>
+          <a href="#ch7">7 · 先在本机试营业</a>
+          <a href="#ch8">8 · 把文件传上网</a>
+          <a href="#ch9">9 · 门牌号和上锁</a>
+          <a href="#ch10">10 · 改完更新与分享</a>
+          <a href="#ch11">11 · 出错了怎么查</a>
+          <a href="#checklist">12 · 上线检查清单</a>
+          <a href="#glossary">13 · 名词表与常见问题</a>
+          <a href="#cheatsheet">14 · 常用速查</a>
+        </nav>
+      </details>
+      <div class="sidebar-note">
+        <strong>读法建议</strong>
+        <p>别想着一次全懂。先照着第 3 节把文件建出来，再一节一节加上去，效果比从头背到尾好十倍。</p>
+      </div>
+    </aside>
+
+    <div class="content">
+
+      <section class="chapter" id="ch1">
+        <div class="chapter-head">
+          <span class="chapter-num">01</span>
+          <h2>网站到底是什么</h2>
+        </div>
+        <p class="lead">先说结论：一个网站，就是一堆文件，放在一台永远开机的电脑上，别人通过浏览器来取。</p>
+        <p>你可以把它想成开一家餐厅。餐厅需要三个条件：有店面（文件），有地址（网址），有人帮你守着店、把菜端出去（托管服务器）。客人不用知道厨房长什么样，他只要推门进来点菜就行。</p>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>你现在双击打开一个 Word 文档，看到的是内容。网站也一样：浏览器打开一个网页，本质上是从远方那台电脑上取回一个文件，然后把它画出来。</p>
+        </div>
+        <p>如果你写过 C 语言，那更好理解：</p>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <ul>
+            <li><strong>index.html</strong> 就像 <code>main.c</code>，是整个程序的入口，浏览器默认先找它。</li>
+            <li><strong>标签成对出现</strong> 就像 <code>{ }</code> 括号，开一个就必须关一个，少一个就会出错。</li>
+            <li><strong>浏览器</strong> 就像编译器加运行环境，它读懂你的文件，然后把画面"运行"出来。</li>
+            <li>区别在于：C 写错会编译不过，网页写错通常不报错，只是画面变丑或者某块不显示。所以网页更能"边做边看"。</li>
+          </ul>
+        </div>
+        <p>记住这一句就够开工了：<strong>网页是文件，网站是文件夹，上线就是把文件夹搬到一台公开的电脑上。</strong><span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="解释文件夹和文件的区别">?</button><span class="hint-pop"><strong>文件夹和文件怎么分</strong>图标是黄色夹子的叫文件夹，里面可以装东西；图标是一张白纸的才叫文件。改完名之后看窗口里「类型」那一列最准。</span></span></p>
+      </section>
+
+      <section class="chapter" id="ch2">
+        <div class="chapter-head">
+          <span class="chapter-num">02</span>
+          <h2>你只需要准备三样东西</h2>
+        </div>
+        <p class="lead">很多教程一上来就讲服务器、数据库、框架，把人吓跑了。你先别管那些，做静态网站只要三样。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="为什么不用先买服务器">?</button><span class="hint-pop"><strong>先别花钱</strong>不用一上来买服务器、买域名、装 Linux。等网站跑起来、真有人看了再说：先做出来，再做好，最后才做贵。</span></span></p>
+        <div class="grid-3">
+          <div class="mini-card">
+            <h3>一个文件夹</h3>
+            <p>里面放你的网页文件。命名用英文小写，别用空格，比如 <code>my-site</code>。</p>
+          </div>
+          <div class="mini-card">
+            <h3>一个入口文件</h3>
+            <p>必须叫 <code>index.html</code>。这是默认首页，名字错了就是一片空白。</p>
+          </div>
+          <div class="mini-card">
+            <h3>一个托管平台</h3>
+            <p>免费的就够用。它负责把你的文件挂在网上，给你一个链接。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch3">
+        <div class="chapter-head">
+          <span class="chapter-num">03</span>
+          <h2>写出你的第一个网页</h2>
+        </div>
+        <p class="lead">新建一个文件夹，在里面新建一个<strong>后缀为 .html 的纯文本文件</strong>，名字叫 <code>index.html</code><span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="怎么确认建的是文件">?</button><span class="hint-pop"><strong>怎么确认建对了</strong>改完名字看「类型」列：显示 HTML 文档才对；显示「文件夹」说明你把夹子建出来了，删掉重来。实在不确定就右键 → 属性，看文件类型。</span></span>。</p>
+        <p>别把"文本文件"想得很玄。它就是你在记事本里敲的那几个字，没有任何特殊格式。真正决定它身份的，是后缀名：后缀是 <code>.html</code>，浏览器把它画成网页；后缀是 <code>.txt</code>，浏览器只会把代码原样吐给你看。</p>
+        <div class="callout warn">
+          <span class="callout-tag">先避开这个坑</span>
+          <p>Windows 默认<strong>隐藏已知文件类型的扩展名</strong>。你新建"文本文档"再改名成 <code>index.html</code>，系统很可能偷偷把它存成了 <code>index.html.txt</code>，你看着一模一样，打开却是一堆代码。</p>
+          <p>两个办法确认：在文件夹顶部点「查看」→ 勾选「文件扩展名」，看清真实后缀再改名；或者右键文件 → 属性，确认"文件类型"写的是 HTML 文档，不是文本文档。</p>
+        </div>
+        <figure class="figure">
+          <svg viewBox="0 0 820 520" role="img" aria-label="对比图：index.html 打开是网页，index.html.txt 打开是一堆代码">
+            <text x="24" y="30" font-size="15" font-weight="700" fill="#1c1b18">同一个名字，两种命运</text>
+            <text x="24" y="50" font-size="12" fill="#79726a">系统藏起后缀名时，两个文件在文件夹里长得几乎一样</text>
+
+            <rect x="24" y="66" width="372" height="430" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <path d="M38 66 h344 a14 14 0 0 1 14 14 v20 h-372 v-20 a14 14 0 0 1 14-14 z" fill="#f6f2ea"/>
+            <circle cx="46" cy="83" r="4" fill="#d9d2c4"/>
+            <circle cx="60" cy="83" r="4" fill="#d9d2c4"/>
+            <circle cx="74" cy="83" r="4" fill="#d9d2c4"/>
+            <text x="90" y="87" font-size="12" fill="#79726a">我的网站</text>
+
+            <rect x="44" y="118" width="16" height="20" rx="3" fill="#ffffff" stroke="#c9c3b6"/>
+            <text x="72" y="133" font-family="'JetBrains Mono', Consolas, monospace" font-size="15" fill="#1c1b18">index.html</text>
+            <text x="376" y="133" text-anchor="end" font-size="11" fill="#79726a">HTML 文档</text>
+            <line x1="44" y1="150" x2="376" y2="150" stroke="#f0ece2"/>
+
+            <text x="44" y="180" font-size="11" fill="#79726a">双击后，浏览器里是这样：</text>
+            <rect x="44" y="192" width="332" height="168" rx="10" fill="#ffffff" stroke="#e8e2d7"/>
+            <path d="M54 192 h312 a10 10 0 0 1 10 10 v18 h-332 v-18 a10 10 0 0 1 10-10 z" fill="#f6f2ea"/>
+            <text x="58" y="210" font-family="'JetBrains Mono', Consolas, monospace" font-size="10" fill="#79726a">file:///C:/我的网站/index.html</text>
+            <text x="210" y="286" text-anchor="middle" font-size="30" font-weight="700" fill="#1c1b18">你好，世界</text>
+            <text x="210" y="314" text-anchor="middle" font-size="12" fill="#79726a">这是我做的第一个网页。</text>
+
+            <rect x="126" y="386" width="168" height="34" rx="17" fill="#eaf5ef" stroke="#cfe6da"/>
+            <text x="210" y="408" text-anchor="middle" font-size="13" fill="#2f7d5d">✓ 这是网页</text>
+            <text x="210" y="452" text-anchor="middle" font-size="11" fill="#79726a">地址栏是 file:///，说明这是本地文件</text>
+
+            <rect x="424" y="66" width="372" height="430" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <path d="M438 66 h344 a14 14 0 0 1 14 14 v20 h-372 v-20 a14 14 0 0 1 14-14 z" fill="#f6f2ea"/>
+            <circle cx="446" cy="83" r="4" fill="#d9d2c4"/>
+            <circle cx="460" cy="83" r="4" fill="#d9d2c4"/>
+            <circle cx="474" cy="83" r="4" fill="#d9d2c4"/>
+            <text x="490" y="87" font-size="12" fill="#79726a">我的网站</text>
+
+            <rect x="444" y="118" width="16" height="20" rx="3" fill="#ffffff" stroke="#c9c3b6"/>
+            <text x="472" y="133" font-family="'JetBrains Mono', Consolas, monospace" font-size="15" fill="#1c1b18">index.html.txt</text>
+            <text x="776" y="133" text-anchor="end" font-size="11" fill="#d9663a">文本文档</text>
+            <line x1="444" y1="150" x2="776" y2="150" stroke="#f0ece2"/>
+
+            <text x="444" y="180" font-size="11" fill="#79726a">双击后，浏览器里是这样：</text>
+            <rect x="444" y="192" width="332" height="168" rx="10" fill="#f7f5ef" stroke="#e8e2d7"/>
+            <text x="462" y="228" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" fill="#524e45">&lt;!DOCTYPE html&gt;</text>
+            <text x="462" y="256" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" fill="#524e45">&lt;html lang="zh-CN"&gt;</text>
+            <text x="462" y="284" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" fill="#524e45">&lt;body&gt;</text>
+            <text x="478" y="312" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" fill="#524e45">&lt;h1&gt;你好，世界&lt;/h1&gt;</text>
+
+            <rect x="510" y="386" width="200" height="34" rx="17" fill="#fdf0e9" stroke="#f2d7c7"/>
+            <text x="610" y="408" text-anchor="middle" font-size="13" fill="#d9663a">✗ 这里只是文本</text>
+            <text x="610" y="452" text-anchor="middle" font-size="11" fill="#79726a">后缀被系统改成 .txt，浏览器就不认了</text>
+          </svg>
+          <figcaption>图 1 · 左边是真网页：双击就能看到"你好，世界"；右边是后缀被偷偷加了 .txt 的假网页：双击只看到代码。</figcaption>
+        </figure>
+        <p>确认后缀没错之后，用记事本或 VS Code 打开它，把下面这段原样抄进去，保存。</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>index.html</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个网站&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;你好，世界&lt;/h1&gt;
+  &lt;p&gt;这是我做的第一个网页。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        <p>保存后，双击这个文件，它会在浏览器里打开。看到"你好，世界"这几个大字，说明你已经成功了一半。</p>
+        <div class="download-card">
+          <div>
+            <strong>不想一个字一个字抄？</strong>
+            <p>这份说明书配套的示例文件已经打包好了，下载解压，直接在上面改。</p>
+          </div>
+          <a class="btn btn-primary" href="starter.zip" download>下载 starter.zip</a>
+        </div>
+        <h3>这几行分别是什么意思</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>你看到的</th><th>它干的事</th><th>类比</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>告诉浏览器这是网页，不是别的文件</td><td>文件开头声明版本</td></tr>
+              <tr><td><code>&lt;head&gt;</code></td><td>放给浏览器看的信息，不显示在页面里</td><td>程序的配置区</td></tr>
+              <tr><td><code>&lt;meta charset&gt;</code></td><td>声明用 UTF-8，中文才不会乱码</td><td>指定字符编码</td></tr>
+              <tr><td><code>&lt;title&gt;</code></td><td>浏览器标签页上的名字</td><td>程序的名字</td></tr>
+              <tr><td><code>&lt;body&gt;</code></td><td>所有能看见的内容都放这里</td><td>main 函数体</td></tr>
+              <tr><td><code>&lt;h1&gt;</code> / <code>&lt;p&gt;</code></td><td>大标题 / 段落</td><td>printf 输出不同格式</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>再把这两行拆开看</h3>
+        <p>示例里 <code>body</code> 中其实只有两行内容，一行标题、一行段落<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="标签不闭合会怎样">?</button><span class="hint-pop"><strong>少一个斜杠会怎样</strong>标签必须成对。只写 <code>&lt;h1&gt;</code> 忘了 <code>&lt;/h1&gt;</code>，浏览器会以为标题还没结束，把后面所有内容都当成大标题。<code>&lt;p&gt;</code> 同理。</span></span>：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>body 里真正显示出来的两行</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;h1&gt;你好，世界&lt;/h1&gt;
+&lt;p&gt;这是我做的第一个网页。&lt;/p&gt;</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>这一行</th><th>拆开来看</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code></td><td>开场标签，h1 意思是"一号标题"，里面的字会自动变大变粗</td></tr>
+              <tr><td>你好，世界</td><td>你真正想让访客看到的文字，写什么都行</td></tr>
+              <tr><td><code>&lt;/h1&gt;</code></td><td>收尾标签，多了一个斜杠，表示"标题到此结束"</td></tr>
+              <tr><td><code>&lt;p&gt;</code></td><td>p 是 paragraph 的缩写，表示"一段话"，不是标题</td></tr>
+              <tr><td>这是我做的第一个网页。</td><td>段落里的文字，浏览器会自动在段落前后留出空隙</td></tr>
+              <tr><td><code>&lt;/p&gt;</code></td><td>段落结束，后面的内容就不再算这一段了</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>第一行里的 <code>h1</code>，那个 <strong>1</strong><span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="解释 h1 里的 1 是什么意思">?</button><span class="hint-pop"><strong>h1 的 1 是级别，不是字号</strong><code>h</code> 是 heading（标题）的缩写，<code>1</code> 表示第一级：最重要，字也最大。网页一共六级，从 h1 到 h6，数字越大级别越低、字越小。<ul><li><code>h1</code>：整页的主标题，一页只写一个</li><li><code>h2</code>：文章里的小节标题</li><li><code>h3</code>：小节下面再分一层</li></ul>浏览器默认就会把 h1 放大加粗，所以不用自己调字号；也别为了字大，把正文硬写成 h1。级别到 h6 为止，没有 h7。</span></span>不是"字号一号"，而是"标题的级别是一级"。</p>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>标签像快递箱上的"易碎品"贴纸，箱子里的东西才是商品。贴纸只负责告诉快递员怎么搬，不会落到你手上。浏览器也一样，它只认标签，但不会把尖括号画到页面上。</p>
+          <p><code>head</code> 像房子的水电管道，埋在墙里你看不见；<code>body</code> 像客厅，所有家具和摆设在明面上。装修时你只关心客厅，但水电没做好，灯就不亮。</p>
+        </div>
+        <h3>想加更多内容，就继续加标签</h3>
+        <p>在 <code>body</code> 里面一行一行往下加就行，顺序就是从上到下的显示顺序。</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>body 里的常见标签</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;h1&gt;网站大标题&lt;/h1&gt;
+&lt;h2&gt;一节的小标题&lt;/h2&gt;
+&lt;p&gt;一段正文，写什么都行。&lt;/p&gt;
+&lt;img src="photo.jpg" alt="一张照片"&gt;
+&lt;a href="https://example.com"&gt;点我去另一个网站&lt;/a&gt;
+&lt;ul&gt;
+  &lt;li&gt;列表第一项&lt;/li&gt;
+  &lt;li&gt;列表第二项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;button&gt;点我&lt;/button&gt;</code></pre>
+        </div>
+        <p>图片要放在同一个文件夹里，文件名和 <code>src</code> 里写的一模一样，大小写也要一致。</p>
+      </section>
+
+      <section class="chapter" id="ch4">
+        <div class="chapter-head">
+          <span class="chapter-num">04</span>
+          <h2>给页面化妆：CSS</h2>
+        </div>
+        <p class="lead">HTML 负责"有什么"，CSS 负责"长什么样"。同一个内容，换个 CSS 就是完全不同的气质。</p>
+        <figure class="figure">
+          <svg viewBox="0 0 820 400" role="img" aria-label="对比图：同一份 HTML，加了 CSS 后的视觉差异">
+            <defs>
+              <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 0 L10 5 L0 10 z" fill="#b9b3a6"/>
+              </marker>
+            </defs>
+            <text x="24" y="28" font-size="15" font-weight="700" fill="#1c1b18">同一份 HTML，加不加 CSS 的区别</text>
+
+            <rect x="24" y="52" width="340" height="304" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <rect x="44" y="72" width="94" height="26" rx="13" fill="#f2ede3"/>
+            <text x="91" y="90" text-anchor="middle" font-size="11" fill="#79726a">只有 HTML</text>
+            <rect x="44" y="114" width="300" height="220" rx="8" fill="#ffffff" stroke="#e8e2d7"/>
+            <text x="64" y="158" font-size="22" font-weight="700" fill="#1c1b18">我的网站</text>
+            <rect x="64" y="178" width="200" height="8" rx="4" fill="#e8e2d7"/>
+            <rect x="64" y="194" width="160" height="8" rx="4" fill="#e8e2d7"/>
+            <rect x="64" y="226" width="88" height="34" rx="4" fill="#ffffff" stroke="#1c1b18"/>
+            <text x="108" y="248" text-anchor="middle" font-size="13" fill="#1c1b18">点我</text>
+
+            <line x1="368" y1="204" x2="448" y2="204" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowB)"/>
+            <text x="408" y="190" text-anchor="middle" font-size="10.5" fill="#79726a" font-family="'JetBrains Mono', Consolas, monospace">styles.css</text>
+
+            <rect x="456" y="52" width="340" height="304" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <rect x="476" y="72" width="104" height="26" rx="13" fill="#ecebff" stroke="#dcd9f6"/>
+            <text x="528" y="90" text-anchor="middle" font-size="11" fill="#3b3bd1">HTML + CSS</text>
+            <rect x="476" y="114" width="300" height="220" rx="8" fill="#fbf8f2" stroke="#e8e2d7"/>
+            <text x="496" y="158" font-size="22" font-weight="700" fill="#3b3bd1">我的网站</text>
+            <rect x="496" y="178" width="200" height="8" rx="4" fill="#e3dccd"/>
+            <rect x="496" y="194" width="160" height="8" rx="4" fill="#e3dccd"/>
+            <rect x="498" y="229" width="88" height="34" rx="17" fill="#3b3bd1" opacity="0.18"/>
+            <rect x="496" y="226" width="88" height="34" rx="17" fill="#3b3bd1"/>
+            <text x="540" y="248" text-anchor="middle" font-size="13" fill="#ffffff">点我</text>
+          </svg>
+          <figcaption>图 2 · 字和按钮都是同一份 HTML，右边只是多引用了一个 CSS 文件，气质就完全不同。</figcaption>
+        </figure>
+        <p>新建一个<strong>文件</strong>叫 <code>styles.css</code>（不是文件夹，建法和 index.html 一样），和 <code>index.html</code> 放在同一个文件夹里。然后在 HTML 的 <code>head</code> 里加一行，把它引进来——位置是 <code>&lt;head&gt;</code> 和 <code>&lt;/head&gt;</code> 之间，不是 body 里。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="CSS 到底加到哪个文件">?</button><span class="hint-pop"><strong>两个文件，各放各的</strong><ul><li>CSS 规则整段粘进 <code>styles.css</code></li><li><code>index.html</code> 只加一行 <code>link</code>，放在 head 里</li></ul>千万别把 CSS 粘进 body，那样会变成页面上的文字。</span></span></p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>在 head 里加这一行</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+        </div>
+        <p>然后往 <code>styles.css</code> 里写规则。每条规则都是"选谁 + 改成什么样"：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>styles.css</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #fbf9f5;
+  color: #222;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  line-height: 1.8;
+}
+
+h1 {
+  color: #3b3bd1;
+  font-size: 40px;
+}
+
+button {
+  background: #3b3bd1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+}</code></pre>
+        </div>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <p>CSS 有点像 <code>#define</code> 加全局配置：你在一处写好"按钮是蓝色的"，所有按钮都自动变蓝。改一次，处处生效。这就是它比一个个标签手写样式更省力的原因。</p>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>HTML 是毛坯房，CSS 是刷墙、铺地板、换灯具。房子结构没变，但住起来的感觉全变了。而且装修可以随时改，不用拆房子。</p>
+        </div>
+        <h3>最常用的几条属性</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>属性</th><th>作用</th><th>怎么记</th></tr></thead>
+            <tbody>
+              <tr><td><code>color</code></td><td>文字颜色</td><td>color 就是颜色</td></tr>
+              <tr><td><code>background</code></td><td>背景色或背景图</td><td>背景</td></tr>
+              <tr><td><code>font-size</code></td><td>字号</td><td>font 是字体</td></tr>
+              <tr><td><code>margin</code></td><td>外边距，元素外面的空隙</td><td>外面的距离</td></tr>
+              <tr><td><code>padding</code></td><td>内边距，元素里面的空隙</td><td>里面的肉</td></tr>
+              <tr><td><code>border-radius</code></td><td>圆角</td><td>radius 是半径</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch5">
+        <div class="chapter-head">
+          <span class="chapter-num">05</span>
+          <h2>让按钮真正动起来：JS</h2>
+        </div>
+        <p class="lead">HTML 是骨架，CSS 是皮肤，JavaScript 是神经。它让页面能对点击、输入、滚动做出反应。</p>
+        <figure class="figure">
+          <svg viewBox="0 0 820 300" role="img" aria-label="示意图：点击按钮后页面文字从零次变成一次">
+            <defs>
+              <marker id="arrowC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 0 L10 5 L0 10 z" fill="#b9b3a6"/>
+              </marker>
+            </defs>
+            <text x="24" y="28" font-size="15" font-weight="700" fill="#1c1b18">点一下，页面自己会变</text>
+
+            <rect x="24" y="50" width="228" height="180" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <text x="44" y="80" font-size="11" fill="#79726a">点击前</text>
+            <text x="44" y="114" font-size="13.5" fill="#4a4740">现在还没有人点我。</text>
+
+            <line x1="258" y1="140" x2="294" y2="140" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowC)"/>
+
+            <text x="380" y="94" text-anchor="middle" font-size="11" fill="#79726a">点一下</text>
+            <rect x="302" y="118" width="160" height="56" rx="28" fill="#3b3bd1" opacity="0.16"/>
+            <rect x="300" y="115" width="160" height="56" rx="28" fill="#3b3bd1"/>
+            <text x="380" y="150" text-anchor="middle" font-size="16" fill="#ffffff">点我一下</text>
+            <path d="M432 166 l0 26 l7 -7 l5 10 l6 -3 l-5 -10 l10 -1 z" fill="#1c1b18"/>
+            <text x="380" y="202" text-anchor="middle" font-size="10.5" fill="#8a8578" font-family="'JetBrains Mono', Consolas, monospace">count = count + 1</text>
+
+            <line x1="468" y1="140" x2="518" y2="140" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowC)"/>
+
+            <rect x="524" y="50" width="272" height="180" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <text x="544" y="80" font-size="11" fill="#79726a">点击后</text>
+            <text x="544" y="114" font-size="13.5" fill="#4a4740">你已经点了 1 次。</text>
+          </svg>
+          <figcaption>图 3 · 按钮原本只是块颜色，加上 JS 之后，它才真的"会做事"。</figcaption>
+        </figure>
+        <div class="callout warn">
+          <span class="callout-tag">先分清文件还是文件夹</span>
+          <p><code>script.js</code> 是<strong>文件</strong>，不是文件夹。建法和 <code>index.html</code> 完全一样：右键 → 新建 → 文本文档 → 把整个名字改成 <code>script.js</code>，改完看一眼"类型"列，显示的是 JS 文件而不是"文件夹"，才算对。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="建完后的文件夹长什么样">?</button><span class="hint-pop"><strong>建完应该有三样东西</strong>同一个文件夹里并排放着：<code>index.html</code>、<code>styles.css</code>、<code>script.js</code>。三个都是纸片图标；如果哪个是夹子图标，就是建错了。</span></span></p>
+        </div>
+        <h3>这三行加在 index.html 的哪个位置</h3>
+        <p>不需要新建 body。页面只有一个 <code>&lt;body&gt;</code>，你要做的是在它里面、<code>&lt;/body&gt;</code> 的上一行，加上这三行。</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>index.html · 完整样子（彩色三行是新增的）</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个网站&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;你好，世界&lt;/h1&gt;
+  &lt;p&gt;这是我做的第一个网页。&lt;/p&gt;
+
+<span class="add-line">  &lt;p id="msg"&gt;现在还没有人点我。&lt;/p&gt;</span><span class="add-line">  &lt;button id="btn"&gt;点我一下&lt;/button&gt;</span><span class="add-line">  &lt;script src="script.js"&gt;&lt;/script&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>编号</th><th>加在哪一行之后</th><th>加什么</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>①</td><td><code>&lt;p&gt;这是我做的第一个网页。&lt;/p&gt;</code> 的下一行</td><td><code>&lt;p id="msg"&gt;现在还没有人点我。&lt;/p&gt;</code></td></tr>
+              <tr><td>②</td><td>① 的下一行</td><td><code>&lt;button id="btn"&gt;点我一下&lt;/button&gt;</code></td></tr>
+              <tr><td>③</td><td>紧贴 <code>&lt;/body&gt;</code> 的上面一行</td><td><code>&lt;script src="script.js"&gt;&lt;/script&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>顺序别调：<code>script</code> 必须放在按钮后面，否则 JS 执行时页面上还没有按钮，它就会报"找不到元素"。整段粘贴到文件里时，编号 ①②③ 不要抄进去。</p>
+        <p>再新建 <code>script.js</code>，写上这几行：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>script.js</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>const btn = document.getElementById("btn");
+const msg = document.getElementById("msg");
+let count = 0;
+
+btn.addEventListener("click", function () {
+  count = count + 1;
+  msg.textContent = "你已经点了 " + count + " 次。";
+});</code></pre>
+        </div>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <p><code>getElementById</code> 像拿到一个变量的地址；<code>addEventListener</code> 像注册一个回调函数；<code>count = count + 1</code> 就是你熟悉的 <code>count++</code>。区别是 C 里你手动调用，这里由"点击"这个事件替你调用。</p>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>网页原本是一张海报，只能看。加了 JS，海报变成了电梯：你按一下，它才有反应。开关装在墙上，但真正让灯亮的是里面的电路。</p>
+        </div>
+        <div class="callout warn">
+          <span class="callout-tag">新手最常见的问题</span>
+          <p>JS 写在 <code>body</code> 最底部，或者给 <code>script</code> 加 <code>defer</code>。如果写在前面，代码执行时按钮还不存在，就会报"找不到元素"。</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch6">
+        <div class="chapter-head">
+          <span class="chapter-num">06</span>
+          <h2>加图片，再加第二个页面</h2>
+        </div>
+        <p class="lead">只有一个页面的网站，像一张名片；加上图片和第二个页面，才像一个真正的站。</p>
+        <p>先记住一个前提：<strong>图片也是文件，必须和网页放在一起</strong>。网页里写的不是图片本身，而是"去哪个文件夹、找哪张图"，这行说明就叫<strong>路径</strong>。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="为什么不能直接复制图片">?</button><span class="hint-pop"><strong>不能把图片拖进网页里</strong>拖进去只是临时显示，文件一保存就没了。正确做法是把图片复制进文件夹，再用 <code>&lt;img&gt;</code> 指过去。</span></span></p>
+        <h3>第一步：建一个 images 文件夹</h3>
+        <p>在 <code>index.html</code> 旁边右键 → 新建 → 文件夹，名字改成 <code>images</code>，全小写，别用中文和空格。然后把你的图片复制进去。</p>
+        <figure class="figure">
+          <svg viewBox="0 0 820 380" role="img" aria-label="示意图：文件夹里放图片和两个网页，两个网页用链接互跳">
+            <defs>
+              <marker id="arrowE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0 0 L10 5 L0 10 z" fill="#b9b3a6"/>
+              </marker>
+            </defs>
+            <text x="24" y="30" font-size="15" font-weight="700" fill="#1c1b18">一个文件夹，装下图片和两个页面</text>
+            <text x="24" y="48" font-size="12" fill="#79726a">所有东西都在同一层，路径才好写</text>
+
+            <rect x="24" y="62" width="300" height="286" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <rect x="40" y="78" width="14" height="7" rx="3" fill="#c9c3b6"/>
+            <rect x="40" y="82" width="28" height="19" rx="4" fill="#f6f2ea" stroke="#c9c3b6"/>
+            <text x="78" y="97" font-size="13" font-weight="700" fill="#1c1b18" font-family="'JetBrains Mono', Consolas, monospace">my-site</text>
+
+            <rect x="44" y="116" width="13" height="15" rx="2.5" fill="#fff" stroke="#c9c3b6"/>
+            <text x="68" y="128" font-size="12.5" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">index.html</text>
+            <rect x="44" y="142" width="13" height="15" rx="2.5" fill="#fff" stroke="#c9c3b6"/>
+            <text x="68" y="154" font-size="12.5" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">about.html</text>
+            <rect x="44" y="168" width="13" height="15" rx="2.5" fill="#fff" stroke="#c9c3b6"/>
+            <text x="68" y="180" font-size="12.5" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">styles.css</text>
+            <rect x="44" y="194" width="13" height="15" rx="2.5" fill="#fff" stroke="#c9c3b6"/>
+            <text x="68" y="206" font-size="12.5" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">script.js</text>
+
+            <rect x="44" y="220" width="16" height="8" rx="3" fill="#d9d2c4"/>
+            <rect x="44" y="225" width="30" height="17" rx="4" fill="#f6f2ea" stroke="#c9c3b6"/>
+            <text x="84" y="238" font-size="12.5" font-weight="600" fill="#1c1b18" font-family="'JetBrains Mono', Consolas, monospace">images/</text>
+            <rect x="62" y="246" width="13" height="15" rx="2.5" fill="#fff" stroke="#c9c3b6"/>
+            <text x="86" y="258" font-size="12.5" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">photo.svg</text>
+
+            <text x="174" y="322" text-anchor="middle" font-size="11.5" fill="#79726a">图片放在 images 里，网页写在外面</text>
+
+            <text x="468" y="86" text-anchor="middle" font-size="11" fill="#79726a">点"关于我"</text>
+            <text x="676" y="310" text-anchor="middle" font-size="11" fill="#79726a">点"回到首页"</text>
+
+            <rect x="356" y="96" width="200" height="152" rx="10" fill="#fff" stroke="#e8e2d7"/>
+            <path d="M366 96 h180 a10 10 0 0 1 10 10 v18 h-200 v-18 a10 10 0 0 1 10-10 z" fill="#f6f2ea"/>
+            <circle cx="374" cy="110" r="3.5" fill="#d9d2c4"/>
+            <circle cx="386" cy="110" r="3.5" fill="#d9d2c4"/>
+            <text x="368" y="132" font-size="10" fill="#79726a" font-family="'JetBrains Mono', Consolas, monospace">index.html</text>
+            <text x="372" y="158" font-size="15" font-weight="700" fill="#1c1b18">首页</text>
+            <rect x="372" y="170" width="120" height="7" rx="3.5" fill="#e8e2d7"/>
+            <rect x="372" y="184" width="88" height="7" rx="3.5" fill="#e8e2d7"/>
+            <rect x="372" y="206" width="96" height="26" rx="13" fill="#ecebff" stroke="#dcd9f6"/>
+            <text x="420" y="223" text-anchor="middle" font-size="11.5" fill="#3b3bd1">关于我 →</text>
+
+            <rect x="584" y="192" width="212" height="150" rx="10" fill="#fff" stroke="#e8e2d7"/>
+            <path d="M594 192 h192 a10 10 0 0 1 10 10 v18 h-212 v-18 a10 10 0 0 1 10-10 z" fill="#f6f2ea"/>
+            <circle cx="602" cy="206" r="3.5" fill="#d9d2c4"/>
+            <circle cx="614" cy="206" r="3.5" fill="#d9d2c4"/>
+            <text x="596" y="228" font-size="10" fill="#79726a" font-family="'JetBrains Mono', Consolas, monospace">about.html</text>
+            <text x="600" y="254" font-size="15" font-weight="700" fill="#1c1b18">关于我</text>
+            <rect x="600" y="266" width="140" height="7" rx="3.5" fill="#e8e2d7"/>
+            <rect x="600" y="280" width="104" height="7" rx="3.5" fill="#e8e2d7"/>
+            <rect x="600" y="302" width="112" height="26" rx="13" fill="#eaf5ef" stroke="#cfe6da"/>
+            <text x="656" y="319" text-anchor="middle" font-size="11.5" fill="#2f7d5d">← 回到首页</text>
+
+            <path d="M560 146 C600 152 596 176 588 198" fill="none" stroke="#b9b3a6" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowE)"/>
+            <path d="M588 318 C548 316 552 262 560 240" fill="none" stroke="#b9b3a6" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrowE)"/>
+          </svg>
+          <figcaption>图 4 · 左边是你电脑上的文件夹，右边是两个页面。两个页面互相有门，客人才能来回走。</figcaption>
+        </figure>
+        <h3>第二步：用 img 标签把图放进去</h3>
+        <p>在 <code>body</code> 里想显示图片的位置，加这一行。文件名换成你自己的：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>index.html</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;img src="images/photo.svg" alt="一张示例插画"&gt;</code></pre>
+        </div>
+        <p><code>src</code> 是"图片在哪"，<code>alt</code> 是"图片没出来时显示的文字"，读屏软件也会念它。alt 不要留空，用一句话说清图里是什么。</p>
+        <div class="callout warn">
+          <span class="callout-tag">裂图，八成是这三个原因</span>
+          <ul>
+            <li><strong>大小写不一致</strong>：<code>Photo.jpg</code> 和 <code>photo.jpg</code> 是两个文件。服务器认大小写，Windows 不认，所以本地好好的，上传就裂。</li>
+            <li><strong>文件名带中文或空格</strong>：改成英文小写，用短横线分隔，比如 <code>my-photo.jpg</code>。</li>
+            <li><strong>写了本地绝对路径</strong>：<code>C:\Users\...</code> 只在你电脑上有效，上线一定裂。改成 <code>images/photo.svg</code>。</li>
+          </ul>
+        </div>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <p><code>src="images/photo.svg"</code> 就像 <code>#include "images/photo.h"</code>：相对当前文件去找，搬到哪里都能用。写成 <code>C:\Users\...</code> 就像写死了本机的绝对路径，换台电脑就找不到。</p>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p><code>img</code> 是墙上的相框，<code>src</code> 是相框背后那张便签，写着"照片在第二个抽屉"。抽屉一换位置，相框里就只剩 alt 那行字。所以路径要对，位置别乱挪。</p>
+        </div>
+        <h3>第三步：做第二个页面</h3>
+        <p>把 <code>index.html</code> 复制一份，改名 <code>about.html</code>（还是同一层文件夹里）。打开它，把 <code>title</code> 和 <code>body</code> 里的字改掉，比如改成"关于我"。结构不用动，CSS 和 JS 的引用也照旧。</p>
+        <p>然后用 <code>&lt;a&gt;</code> 把两个页面互相连起来。<code>href</code> 写的是<strong>目标文件名</strong>，不是网址：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>两个页面各加一个链接</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>index.html 里：
+&lt;a href="about.html"&gt;关于我&lt;/a&gt;
+
+about.html 里：
+&lt;a href="index.html"&gt;回到首页&lt;/a&gt;</code></pre>
+        </div>
+        <p>存盘后双击 <code>index.html</code>，点"关于我"能跳过去，再点"回到首页"能跳回来，就成功了。跳不过去，先检查两个文件名有没有拼错、是不是在同一个文件夹里。</p>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>两个页面像两间房，<code>a</code> 标签就是门。门牌写错了，客人就敲到别人家；没有门，客人只能待在原地。现在你的房子有两间，可以互相串门了。</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch7">
+        <div class="chapter-head">
+          <span class="chapter-num">07</span>
+          <h2>先在本机试营业</h2>
+        </div>
+        <p class="lead">改一句、存一下、刷新浏览器，这是网页开发最舒服的地方：改完立刻能看到结果。</p>
+        <p>最省事的办法：双击 <code>index.html</code>，浏览器直接打开。缺点是地址栏显示的是本地文件路径，而且有些需要"服务器环境"的功能跑不了。日常做静态页面，这样完全够用。</p>
+        <p>想更接近真实环境，可以在文件夹里开一个本地小服务器。装好 Node.js 之后，在这个文件夹打开终端，运行：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>终端</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>npx serve .</code></pre>
+        </div>
+        <p>它会给你一个 <code>http://localhost:3000</code> 这样的地址，在浏览器里打开就是你的网站。</p>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <p>双击打开像是直接运行 <code>a.exe</code>；<code>npx serve</code> 像是先在本地起一个调试环境再运行。前者快，后者更接近正式上线后的样子。</p>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>这就是正式开业前的试营业。先请家人朋友来吃一顿，看看菜咸不咸、椅子稳不稳。等自己满意了，再挂招牌对外营业。</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch8">
+        <div class="chapter-head">
+          <span class="chapter-num">08</span>
+          <h2>把文件传上网</h2>
+        </div>
+        <p class="lead">先选平台，再动手。平台选错了，后面每一步都别扭；选对了，第一次上线只要点几下。</p>
+        <p>免费的静态托管就这几家，差别主要在"国内打开快不快"和"要不要实名备案"：</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>平台</th><th>国内速度</th><th>门槛</th><th>怎么传</th><th>适合谁</th></tr></thead>
+            <tbody>
+              <tr><td><a href="https://app.netlify.com/drop" target="_blank" rel="noopener"><strong>Netlify</strong></a><br><span class="pick">推荐</span></td><td>一般</td><td>一个邮箱就能注册</td><td>把文件夹拖进网页</td><td>第一次上线，想最快看到结果</td></tr>
+              <tr><td><a href="https://vercel.com/new" target="_blank" rel="noopener"><strong>Vercel</strong></a></td><td>一般</td><td>邮箱注册，有时要验证手机</td><td>拖拽或连接仓库</td><td>以后可能写前端项目的人</td></tr>
+              <tr><td><a href="https://pages.github.com" target="_blank" rel="noopener"><strong>GitHub Pages</strong></a></td><td>偏慢</td><td>要有 GitHub 账号</td><td>上传到仓库，不能直接拖文件夹</td><td>愿意顺便学 Git 的人</td></tr>
+              <tr><td><a href="https://www.aliyun.com/product/oss" target="_blank" rel="noopener"><strong>阿里云 OSS</strong></a> / <a href="https://cloud.tencent.com/product/cos" target="_blank" rel="noopener"><strong>腾讯云 COS</strong></a></td><td>快</td><td>要实名，绑自己域名要备案</td><td>控制台里逐个上传</td><td>主要给国内用户看、打算买域名的人</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="quick-links">
+          <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">Netlify 拖拽上传</a>
+          <a href="https://vercel.com/new" target="_blank" rel="noopener">Vercel 新建项目</a>
+          <a href="https://github.com" target="_blank" rel="noopener">GitHub 注册</a>
+          <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages 说明</a>
+          <a href="https://www.aliyun.com/product/oss" target="_blank" rel="noopener">阿里云 OSS</a>
+          <a href="https://cloud.tencent.com/product/cos" target="_blank" rel="noopener">腾讯云 COS</a>
+        </div>
+        <p>下面用 <strong>Netlify</strong> 走一遍，因为它的拖拽最直观。其他平台的按钮名字不一样，动作是一回事：注册 → 找到上传入口 → 把文件夹拖进去 → 等网址。</p>
+        <ol class="steps">
+          <li><strong>注册登录</strong>：打开 <code>app.netlify.com</code>，用邮箱注册，或者直接用 GitHub 账号登录。</li>
+          <li><strong>找到上传入口</strong>：进入 Sites 页面，点 <code>Add new site</code> → <code>Deploy manually</code>。找不到就记住这个专用地址：<code>app.netlify.com/drop</code>。</li>
+          <li><strong>拖文件夹</strong>：页面中间会出现一个虚线框，把整个 <code>my-site</code> 文件夹拖进去。注意拖的是<strong>文件夹本身</strong>，不是把里面的文件一个个拖。</li>
+          <li><strong>等它变出网址</strong>：十几秒到半分钟，页面会给一个 <code>https://xxx.netlify.app</code> 的链接。点开能看到你的首页，就成功了。</li>
+          <li><strong>（可选）换个好记的名字</strong>：Site configuration → Change site name，改成你的名字，网址就跟着变。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="界面找不到对应按钮">?</button><span class="hint-pop"><strong>界面是英文的，还会改版</strong>不用逐字对。找 <code>Add new site</code>、<code>Deploy manually</code>、<code>drag and drop</code> 这几个词，意思都是"新建站点、手动部署、把文件拖进来"。按钮位置变了也照样找得到。</span></span></li>
+        </ol>
+        <figure class="figure">
+          <svg viewBox="0 0 820 300" role="img" aria-label="示意图：把文件夹上传到托管平台，再得到网址">
+            <defs>
+              <marker id="arrowD" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 0 L10 5 L0 10 z" fill="#b9b3a6"/>
+              </marker>
+            </defs>
+            <text x="24" y="28" font-size="15" font-weight="700" fill="#1c1b18">上线三步：上传、托管、拿到网址</text>
+
+            <rect x="24" y="56" width="200" height="200" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <rect x="44" y="74" width="14" height="7" rx="3" fill="#c9c3b6"/>
+            <rect x="44" y="78" width="26" height="19" rx="4" fill="#f6f2ea" stroke="#c9c3b6"/>
+            <text x="82" y="94" font-size="13" font-weight="700" fill="#1c1b18" font-family="'JetBrains Mono', Consolas, monospace">my-site</text>
+            <text x="44" y="130" font-size="12" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">index.html</text>
+            <text x="44" y="156" font-size="12" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">styles.css</text>
+            <text x="44" y="182" font-size="12" fill="#524e45" font-family="'JetBrains Mono', Consolas, monospace">script.js</text>
+            <text x="124" y="230" text-anchor="middle" font-size="11" fill="#79726a">这就是你电脑上的全部家当</text>
+
+            <text x="267" y="144" text-anchor="middle" font-size="11" fill="#79726a">上传</text>
+            <line x1="228" y1="160" x2="304" y2="160" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+            <rect x="310" y="84" width="200" height="144" rx="14" fill="#f3f2fc" stroke="#dcd9f6"/>
+            <text x="410" y="132" text-anchor="middle" font-size="14" font-weight="600" fill="#3b3bd1">静态托管平台</text>
+            <text x="410" y="158" text-anchor="middle" font-size="11" fill="#79726a">帮你把文件挂在网上</text>
+            <text x="410" y="180" text-anchor="middle" font-size="11" fill="#79726a">24 小时不关机</text>
+
+            <text x="553" y="144" text-anchor="middle" font-size="11" fill="#79726a">生成网址</text>
+            <line x1="514" y1="160" x2="590" y2="160" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+            <rect x="596" y="56" width="200" height="200" rx="14" fill="#ffffff" stroke="#e8e2d7"/>
+            <path d="M606 56 h180 a10 10 0 0 1 10 10 v16 h-200 v-16 a10 10 0 0 1 10-10 z" fill="#f6f2ea"/>
+            <text x="610" y="73" font-size="9.5" fill="#79726a" font-family="'JetBrains Mono', Consolas, monospace">https://xxx.traesite.cn</text>
+            <text x="696" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#1c1b18">网站已上线</text>
+            <text x="696" y="180" text-anchor="middle" font-size="11" fill="#79726a">任何人打开都能看</text>
+          </svg>
+          <figcaption>图 5 · 你只负责左边那个文件夹，中间和右边平台会替你搞定。</figcaption>
+        </figure>
+        <h3>如果选了 GitHub Pages</h3>
+        <p>步骤多一点，但完全免费、能一直用：注册 GitHub → 新建一个仓库（选 Public）→ <code>Add file</code> → <code>Upload files</code>，把 <code>index.html</code>、<code>styles.css</code>、<code>script.js</code>、<code>about.html</code> 和 <code>images</code> 文件夹都传上去 → 进仓库的 <code>Settings</code> → <code>Pages</code> → Source 选 <code>main</code> 和 <code>/ (root)</code> → 保存 → 等一两分钟，得到 <code>https://你的用户名.github.io/仓库名/</code>。</p>
+        <div class="callout warn">
+          <span class="callout-tag">传完打不开，先查这两条</span>
+          <ul>
+            <li><strong>打开是 404 或一串文件列表</strong>：文件夹多套了一层。网站根目录里必须直接看到 <code>index.html</code>；如果看到的是 <code>my-site/index.html</code>，就重新上传 <code>my-site</code> 里面的内容。</li>
+            <li><strong>本地正常，线上裂图</strong>：文件名大小写或中文名的问题，回到第 6 节核一遍。</li>
+          </ul>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>托管平台就像商场里的共享铺位：你把自己的货摆进去，商场负责开门、供电、指路。你不需要自己盖楼，也不用24小时守着。货卖得好，再考虑租个独立门面。</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch9">
+        <div class="chapter-head">
+          <span class="chapter-num">09</span>
+          <h2>门牌号和上锁：域名与 HTTPS</h2>
+        </div>
+        <p class="lead">平台给的网址能用，但不好记。域名就是给你的店换一块好记的招牌。</p>
+        <p>域名需要按年购买，买完要"解析"到平台给你的地址上。解析的动作，说白了就是填一张表：告诉全世界"访问我这个名字，请去那台机器"。</p>
+        <div class="callout clike">
+          <span class="callout-tag">C 语言类比</span>
+          <p>域名像宏定义或别名：<code>#define MY_SITE 123.45.67.89</code>。用户只记名字，系统自动替换成真实地址。域名解析服务器就是那张对照表。</p>
+        </div>
+        <p>HTTPS 是地址栏里那个小锁。它让浏览器和网站之间的传输被加密。现在主流平台默认就带，不用你手动配置。如果没有，说明你还在用很老的方案，换一个平台就好。</p>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>HTTP 像寄明信片，路上谁都能看；HTTPS 像寄挂号密封信，只有收件人能拆。区别就这么大。</p>
+        </div>
+        <div class="callout warn">
+          <span class="callout-tag">别急着买</span>
+          <p>先让网站跑起来，确认自己会持续更新，再买域名。很多人第一天买了域名和服务器，第三天就不管了，钱白花。</p>
+        </div>
+      </section>
+
+      <section class="chapter" id="ch10">
+        <div class="chapter-head">
+          <span class="chapter-num">10</span>
+          <h2>改完怎么更新，怎么分享</h2>
+        </div>
+        <p class="lead">上线不是终点。改一个字、换一张图，都要再走一遍更新；而"谁能看到"这件事，也得你自己决定。</p>
+        <h3>更新：本机改了，网上不会自己变</h3>
+        <p>平台上的文件是你上传那一刻的<strong>复印件</strong>。你在电脑上改原件，复印件不会跟着变，必须重新传一次。</p>
+        <ol class="steps">
+          <li><strong>先在本地改好</strong>：保存文件，双击 <code>index.html</code> 确认没问题，再上传。别拿线上当试验田。</li>
+          <li><strong>重新上传</strong>：Netlify 进站点的 <code>Deploys</code> 页面，找到 <code>Need to update your site?</code> 那个虚线框，把文件夹再拖一次；GitHub Pages 进仓库 → <code>Add file</code> → <code>Upload files</code>，传同名文件覆盖，再点 <code>Commit changes</code>。</li>
+          <li><strong>强制刷新再看</strong>：电脑上按 <code>Ctrl + F5</code>；手机上关掉标签页重新打开，或者换个浏览器。</li>
+        </ol>
+        <figure class="figure">
+          <svg viewBox="0 0 820 270" role="img" aria-label="示意图：改文件、重新上传、强制刷新、看到新版四个步骤">
+            <defs>
+              <marker id="arrowF" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 0 L10 5 L0 10 z" fill="#b9b3a6"/>
+              </marker>
+            </defs>
+            <text x="24" y="30" font-size="15" font-weight="700" fill="#1c1b18">每次更新，都是这四步</text>
+            <text x="24" y="50" font-size="12" fill="#79726a">少一步，你看到的就不是最新版</text>
+
+            <rect x="24" y="86" width="160" height="122" rx="14" fill="#fff" stroke="#e8e2d7"/>
+            <text x="42" y="112" font-size="11" fill="#d9663a" font-family="'JetBrains Mono', Consolas, monospace">01</text>
+            <text x="42" y="140" font-size="14" font-weight="700" fill="#1c1b18">改本地文件</text>
+            <text x="42" y="164" font-size="11.5" fill="#79726a">保存后本地先看一遍</text>
+            <text x="42" y="184" font-size="11.5" fill="#79726a">确认没问题再传</text>
+
+            <line x1="190" y1="148" x2="222" y2="148" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowF)"/>
+
+            <rect x="228" y="86" width="160" height="122" rx="14" fill="#fff" stroke="#e8e2d7"/>
+            <text x="246" y="112" font-size="11" fill="#d9663a" font-family="'JetBrains Mono', Consolas, monospace">02</text>
+            <text x="246" y="140" font-size="14" font-weight="700" fill="#1c1b18">重新上传</text>
+            <text x="246" y="164" font-size="11.5" fill="#79726a">拖一次文件夹</text>
+            <text x="246" y="184" font-size="11.5" fill="#79726a">或提交一次改名</text>
+
+            <line x1="394" y1="148" x2="426" y2="148" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowF)"/>
+
+            <rect x="432" y="86" width="160" height="122" rx="14" fill="#fff" stroke="#e8e2d7"/>
+            <text x="450" y="112" font-size="11" fill="#d9663a" font-family="'JetBrains Mono', Consolas, monospace">03</text>
+            <text x="450" y="140" font-size="14" font-weight="700" fill="#1c1b18">强制刷新</text>
+            <text x="450" y="164" font-size="11.5" fill="#79726a">Ctrl + F5</text>
+            <text x="450" y="184" font-size="11.5" fill="#79726a">绕开浏览器缓存</text>
+
+            <line x1="598" y1="148" x2="630" y2="148" stroke="#b9b3a6" stroke-width="1.5" marker-end="url(#arrowF)"/>
+
+            <rect x="636" y="86" width="160" height="122" rx="14" fill="#eaf5ef" stroke="#cfe6da"/>
+            <text x="654" y="112" font-size="11" fill="#2f7d5d" font-family="'JetBrains Mono', Consolas, monospace">04</text>
+            <text x="654" y="140" font-size="14" font-weight="700" fill="#2f7d5d">看到新版</text>
+            <text x="654" y="164" font-size="11.5" fill="#5f7a6d">再发给别人</text>
+            <text x="654" y="184" font-size="11.5" fill="#5f7a6d">才不会是旧内容</text>
+
+            <text x="24" y="244" font-size="11.5" fill="#79726a">补充：浏览器为了快，会把旧文件存在你电脑上。缓存不清，改了也像没改。</text>
+          </svg>
+          <figcaption>图 6 · 更新不是"改完就好"，而是"改、传、刷"三件事都做完。</figcaption>
+        </figure>
+        <h3>为什么我改了，打开还是旧的</h3>
+        <p>九成是浏览器缓存。它把上次的 <code>styles.css</code>、图片存了起来，下次直接用，省流量也更快。所以先按 <code>Ctrl + F5</code> 强制刷新；还不行，就用一个从没打开过你网站的无痕窗口验证一次。</p>
+        <div class="callout life">
+          <span class="callout-tag">生活类比</span>
+          <p>餐厅换了新菜单，但老客人手里还拿着上次那张。缓存就是客人手里那张旧菜单：内容没错，只是过期了。强制刷新等于把旧菜单收走，换一张新的。</p>
+        </div>
+        <h3>谁能看到：公开还是私密</h3>
+        <p>这类免费托管默认是<strong>公开</strong>的：任何拿到链接的人都能打开，搜索引擎也可能把它收录。想让搜索引擎别收录，可以在 <code>head</code> 里加一行：</p>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>index.html · 加在 head 里</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;meta name="robots" content="noindex"&gt;</code></pre>
+        </div>
+        <p>注意：这只是"请搜索引擎别收录"，<strong>不等于加密</strong>，知道链接的人照样能看。真要密码保护，Netlify 和 Vercel 都有 Password protection，一般要付费。免费能做的，就是链接别到处发。</p>
+        <div class="callout warn">
+          <span class="callout-tag">"能打开"不等于"安全"</span>
+          <p>公开链接等于公开内容。密码、身份证照片、公司内部文件、别人的联系方式，都不要放上去。已经传了又删不掉？把文件从文件夹里移走，重新上传一次。</p>
+        </div>
+        <h3>分享：发链接之前先自查</h3>
+        <ul>
+          <li><strong>直接发链接</strong>：微信、短信、邮件都行，对方点开就是你的网站。</li>
+          <li><strong>二维码</strong>：搜索引擎搜"网址转二维码"，生成后截图发人，线下贴出来也好用。</li>
+          <li><strong>发之前用无痕窗口打开一次</strong>：确认陌生人看到的内容和你一样，没有裂图、没有 404。</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="ch11">
+        <div class="chapter-head">
+          <span class="chapter-num">11</span>
+          <h2>出错了怎么查</h2>
+        </div>
+        <p class="lead">网页出错很少给你一句明确的报错。学会按现象对照，比背语法有用得多。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="用 C 语言理解调试面板">?</button><span class="hint-pop"><strong>C 语言类比</strong>Console 像编译器给的错误行号，Network 像检查哪个头文件没找到。区别是网页的错误更安静，得你主动去看。</span></span></p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>现象</th><th>最可能的原因</th><th>怎么改</th></tr></thead>
+            <tbody>
+              <tr><td>打开是一片空白</td><td>入口文件不叫 index.html，或内容没在 body 里</td><td>检查文件名；把内容放进 body</td></tr>
+              <tr><td>中文变成方块或乱码</td><td>没声明 UTF-8</td><td>head 里加 <code>&lt;meta charset="UTF-8"&gt;</code>，文件另存为 UTF-8</td></tr>
+              <tr><td>样式完全没生效</td><td>CSS 路径写错，或选择器名字对不上</td><td>打开开发者工具看 Network，确认 css 文件是否 404</td></tr>
+              <tr><td>点了按钮没反应</td><td>JS 报错，或脚本在元素之前执行</td><td>按 F12 看 Console 的红色报错；脚本放 body 底部</td></tr>
+              <tr><td>本地好看，上线裂图</td><td>大小写不一致或用了绝对路径</td><td>统一小写文件名，改成相对路径</td></tr>
+              <tr><td>改了文件，网站没变化</td><td>浏览器缓存</td><td>Ctrl + F5 强制刷新，或换个浏览器试</td></tr>
+              <tr><td>手机上看排版乱</td><td>没写 viewport</td><td>head 里加 <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">最有用的一招</span>
+          <p>在任何网页上按 F12，打开开发者工具。Console 面板看报错，Elements 面板看结构，Network 面板看哪个文件没加载成功。这一招能解决八成问题，比到处问人快。<span class="hint"><button class="hint-btn" type="button" aria-expanded="false" aria-label="按 F12 没反应怎么办">?</button><span class="hint-pop"><strong>按了没反应</strong>笔记本键盘通常要按 <code>Fn + F12</code>；也可以右键页面空白处 → 检查，效果一样。</span></span></p>
+        </div>
+      </section>
+
+      <section class="chapter" id="checklist">
+        <div class="chapter-head">
+          <span class="chapter-num">12</span>
+          <h2>上线前的检查清单</h2>
+        </div>
+        <p class="lead">点一下方框就能打勾，全部通过再发链接。不确定某一条在说什么，点它右边的「第 x 节」直接跳到对应的讲解。勾选状态会记在这台电脑上。</p>
+        <p class="check-progress" id="checkProgress">已完成 0 / 11</p>
+        <ul class="checklist">
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">根目录有 <code>index.html</code>，双击能正常打开</span><a class="check-jump" href="#ch3">第 3 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">页面标题在浏览器标签上显示正确</span><a class="check-jump" href="#ch3">第 3 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">所有图片都能显示，<code>alt</code> 不是空的</span><a class="check-jump" href="#ch6">第 6 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">所有链接点开都能跳转，没有 404</span><a class="check-jump" href="#ch6">第 6 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">手机上打开排版正常，不用放大才能看清</span><a class="check-jump" href="#ch4">第 4 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">控制台（F12 → Console）没有红色报错</span><a class="check-jump" href="#ch11">第 11 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">文件名全是英文小写，路径都是相对路径</span><a class="check-jump" href="#ch6">第 6 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">隐私内容、密码、密钥没有写进文件里</span><a class="check-jump" href="#ch8">第 8 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">上传后打开平台给的网址，能看到最新版本</span><a class="check-jump" href="#ch10">第 10 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">强制刷新或无痕窗口里，内容也是最新的</span><a class="check-jump" href="#ch10">第 10 节</a></label></li>
+          <li><label class="check-item"><input type="checkbox" data-check><span class="tick"></span><span class="check-text">把链接发给一个朋友，他能正常打开</span><a class="check-jump" href="#ch10">第 10 节</a></label></li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="glossary">
+        <div class="chapter-head">
+          <span class="chapter-num">13</span>
+          <h2>名词表与常见问题</h2>
+        </div>
+        <p class="lead">读到一半忘了某个词，回来查这一页就行。每条都只给一句话，不绕弯。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>名词</th><th>一句话解释</th><th>详见</th></tr></thead>
+            <tbody>
+              <tr><td><strong>静态网站</strong></td><td>文件写好是什么就显示什么，不需要数据库</td><td><a href="#ch1">第 1 节</a></td></tr>
+              <tr><td><strong>根目录</strong></td><td>网站最外层那个文件夹，<code>index.html</code> 必须直接放在里面</td><td><a href="#ch8">第 8 节</a></td></tr>
+              <tr><td><strong>相对路径</strong></td><td>相对"当前文件"去找，例如 <code>images/photo.svg</code></td><td><a href="#ch6">第 6 节</a></td></tr>
+              <tr><td><strong>绝对路径</strong></td><td>从磁盘最顶层写起，例如 <code>C:\Users\...</code>，上线必坏</td><td><a href="#ch6">第 6 节</a></td></tr>
+              <tr><td><strong>缓存</strong></td><td>浏览器存下的旧文件，为了下次打开更快</td><td><a href="#ch10">第 10 节</a></td></tr>
+              <tr><td><strong>域名</strong></td><td>网站好记的名字，按年租用</td><td><a href="#ch9">第 9 节</a></td></tr>
+              <tr><td><strong>解析</strong></td><td>把域名指向平台地址的那张对照表</td><td><a href="#ch9">第 9 节</a></td></tr>
+              <tr><td><strong>HTTPS</strong></td><td>地址栏那个小锁，让传输过程加密</td><td><a href="#ch9">第 9 节</a></td></tr>
+              <tr><td><strong>托管</strong></td><td>帮你 24 小时存放文件、对外开放的服务</td><td><a href="#ch8">第 8 节</a></td></tr>
+              <tr><td><strong>localhost</strong></td><td>指你自己这台电脑，只有你能打开</td><td><a href="#ch7">第 7 节</a></td></tr>
+              <tr><td><strong>响应式</strong></td><td>同一套页面，在手机和电脑上都排得好看</td><td><a href="#ch4">第 4 节</a></td></tr>
+              <tr><td><strong>404</strong></td><td>服务器找不到你请求的这个文件</td><td><a href="#ch11">第 11 节</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>常见问题</h3>
+        <h4>一定要用 VS Code 吗？</h4>
+        <p>不一定。记事本也能改，只是没有颜色高亮，标签写漏了不容易看出来。VS Code 免费，装好之后能省很多找错的时间。</p>
+        <h4>上传后打开是空白，或者一堆文件名？</h4>
+        <p>基本是文件夹层级传错了。<code>index.html</code> 必须直接在网站根目录里，不能藏在 <code>my-site</code> 里面。回到第 8 节，重新拖一次里面的内容。</p>
+        <h4>需要买服务器吗？</h4>
+        <p>静态网站不需要。文件传上去就能用，免费的托管足够。等你要登录、留言、后台管理，才需要考虑服务器和数据库。</p>
+        <h4>能放视频吗？</h4>
+        <p>能，但视频文件很大，直接放会拖慢打开速度。更好的办法是传到视频网站，再用 <code>&lt;iframe&gt;</code> 或链接嵌进来。</p>
+        <h4>别人看到的和我不一样？</h4>
+        <p>先怀疑缓存。让对方按 <code>Ctrl + F5</code>，或者你自己用无痕窗口打开确认一次。第 10 节有完整流程。</p>
+        <h4>改坏了还能退回去吗？</h4>
+        <p>本地留一份备份最稳：整个文件夹复制一份，改名带日期。GitHub Pages 天然有提交历史，可以回滚到旧版本。</p>
+        <h4>网站会被别人搜到吗？</h4>
+        <p>公开的网站，搜索引擎迟早会收录。不想被收录，就在 <code>head</code> 里加 <code>noindex</code>，具体在第 10 节。</p>
+      </section>
+
+      <section class="chapter" id="cheatsheet">
+        <div class="chapter-head">
+          <span class="chapter-num">14</span>
+          <h2>常用速查：标签、快捷键、电脑常识</h2>
+        </div>
+        <p class="lead">这一页不用从头读。写代码卡住的时候，回来抄一行就行。</p>
+        <h3>想做这件事，就抄这一行</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>想做什么</th><th>抄这一行</th><th>放在哪</th></tr></thead>
+            <tbody>
+              <tr><td>加个大标题</td><td><code>&lt;h1&gt;标题&lt;/h1&gt;</code></td><td>body 里</td></tr>
+              <tr><td>加一段话</td><td><code>&lt;p&gt;一段话&lt;/p&gt;</code></td><td>body 里</td></tr>
+              <tr><td>把字加粗</td><td><code>&lt;strong&gt;重点&lt;/strong&gt;</code></td><td>段落里</td></tr>
+              <tr><td>换行</td><td><code>&lt;br&gt;</code></td><td>段落里</td></tr>
+              <tr><td>加一个列表</td><td><code>&lt;ul&gt;&lt;li&gt;第一项&lt;/li&gt;&lt;/ul&gt;</code></td><td>body 里</td></tr>
+              <tr><td>跳到自己的另一个页面</td><td><code>&lt;a href="about.html"&gt;关于我&lt;/a&gt;</code></td><td>body 里</td></tr>
+              <tr><td>跳到别人的网站</td><td><code>&lt;a href="https://example.com"&gt;去看看&lt;/a&gt;</code></td><td>body 里</td></tr>
+              <tr><td>插一张图</td><td><code>&lt;img src="images/photo.svg" alt="描述"&gt;</code></td><td>body 里</td></tr>
+              <tr><td>加一个按钮</td><td><code>&lt;button&gt;点我&lt;/button&gt;</code></td><td>body 里</td></tr>
+              <tr><td>引入样式表</td><td><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></td><td>head 里</td></tr>
+              <tr><td>引入脚本</td><td><code>&lt;script src="script.js"&gt;&lt;/script&gt;</code></td><td>body 最后</td></tr>
+              <tr><td>给元素起个名字</td><td><code>&lt;p id="msg"&gt;...&lt;/p&gt;</code> 或 <code>&lt;div class="card"&gt;...&lt;/div&gt;</code></td><td>body 里</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>一页骨架，可以直接复制</h3>
+        <div class="code-block">
+          <div class="code-bar">
+            <span>index.html · 最小可用骨架</span>
+            <button class="copy-btn" data-copy>复制</button>
+          </div>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;页面标题&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;大标题&lt;/h1&gt;
+  &lt;p&gt;一段话。&lt;/p&gt;
+  &lt;img src="images/photo.svg" alt="一张图"&gt;
+  &lt;a href="about.html"&gt;关于我&lt;/a&gt;
+  &lt;button id="btn"&gt;点我&lt;/button&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        <h3>常用标签</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>标签</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;h1&gt;</code> ~ <code>&lt;h6&gt;</code></td><td>标题，数字越小字越大</td></tr>
+              <tr><td><code>&lt;p&gt;</code></td><td>段落</td></tr>
+              <tr><td><code>&lt;a href="..."&gt;</code></td><td>链接，href 写要去的地址</td></tr>
+              <tr><td><code>&lt;img src="..." alt="..."&gt;</code></td><td>图片，src 是路径，alt 是替代文字</td></tr>
+              <tr><td><code>&lt;ul&gt;</code> + <code>&lt;li&gt;</code></td><td>无序列表（小圆点）</td></tr>
+              <tr><td><code>&lt;ol&gt;</code> + <code>&lt;li&gt;</code></td><td>有序列表（1234）</td></tr>
+              <tr><td><code>&lt;br&gt;</code></td><td>换行，单个标签，不用闭合</td></tr>
+              <tr><td><code>&lt;strong&gt;</code></td><td>加粗强调</td></tr>
+              <tr><td><code>&lt;div&gt;</code></td><td>块级盒子，用来把一组内容包起来</td></tr>
+              <tr><td><code>&lt;span&gt;</code></td><td>行内小片段，用来单独改一小段样式</td></tr>
+              <tr><td><code>&lt;button&gt;</code></td><td>按钮</td></tr>
+              <tr><td><code>&lt;!-- 注释 --&gt;</code></td><td>注释，浏览器不显示，只给自己看</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>常用 CSS</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>属性</th><th>作用</th><th>常用值</th></tr></thead>
+            <tbody>
+              <tr><td><code>color</code></td><td>文字颜色</td><td><code>#333</code>、<code>red</code></td></tr>
+              <tr><td><code>background</code></td><td>背景</td><td><code>#fbf9f5</code></td></tr>
+              <tr><td><code>font-size</code></td><td>字号</td><td><code>16px</code>、<code>1.2em</code></td></tr>
+              <tr><td><code>font-weight</code></td><td>字粗</td><td><code>400</code> 正常、<code>700</code> 加粗</td></tr>
+              <tr><td><code>margin</code></td><td>外边距</td><td><code>0 auto</code> 水平居中</td></tr>
+              <tr><td><code>padding</code></td><td>内边距</td><td><code>20px</code></td></tr>
+              <tr><td><code>border-radius</code></td><td>圆角</td><td><code>8px</code>、<code>999px</code> 变胶囊</td></tr>
+              <tr><td><code>text-align</code></td><td>文字对齐</td><td><code>left</code>、<code>center</code></td></tr>
+              <tr><td><code>max-width</code></td><td>最大宽度</td><td><code>720px</code></td></tr>
+              <tr><td><code>display</code></td><td>排列方式</td><td><code>flex</code> 横排、<code>none</code> 隐藏</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>快捷键</h3>
+        <div class="callout warn mobile-only">
+          <span class="callout-tag">你现在用的是手机</span>
+          <p>这一页的快捷键按不了，手机能做的只有三件事：关掉标签页重开等于刷新；双指缩放看排版；长按选中文字复制。真要改代码，还是回电脑——手机屏幕小，又没有开发者工具，错一个字符很难查。本站的目录已经收在右下角「目录」按钮里。</p>
+        </div>
+        <p>下面以 Windows 为准。Mac 把 <code>Ctrl</code> 换成 <code>Cmd</code>，把 <code>Alt</code> 换成 <code>Option</code>。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>用在哪</th><th>快捷键</th><th>干什么</th></tr></thead>
+            <tbody>
+              <tr><td>浏览器</td><td><code>F12</code></td><td>打开开发者工具，看报错</td></tr>
+              <tr><td>浏览器</td><td><code>Ctrl + Shift + I</code></td><td>同上，F12 没反应时用</td></tr>
+              <tr><td>浏览器</td><td><code>Ctrl + F5</code></td><td>强制刷新，绕过缓存</td></tr>
+              <tr><td>浏览器</td><td><code>Ctrl + Shift + N</code></td><td>打开无痕窗口，验证"别人看到的样子"</td></tr>
+              <tr><td>浏览器</td><td><code>Ctrl + 加号 / 减号</code></td><td>放大 / 缩小页面</td></tr>
+              <tr><td>浏览器</td><td><code>Ctrl + 0</code></td><td>缩放恢复 100%</td></tr>
+              <tr><td>VS Code</td><td><code>Ctrl + S</code></td><td>保存（改完必须存，否则网页没变）</td></tr>
+              <tr><td>VS Code</td><td><code>Ctrl + Z</code></td><td>撤销上一步</td></tr>
+              <tr><td>VS Code</td><td><code>Ctrl + F</code></td><td>在当前文件里查找文字</td></tr>
+              <tr><td>VS Code</td><td><code>Ctrl + /</code></td><td>把这一行变成注释，再按一次取消</td></tr>
+              <tr><td>VS Code</td><td><code>Alt + ↑ / ↓</code></td><td>把这一行整体上下移动</td></tr>
+              <tr><td>VS Code</td><td><code>Shift + Alt + F</code></td><td>自动整理缩进，代码变整齐</td></tr>
+              <tr><td>Windows</td><td><code>Win + E</code></td><td>打开文件资源管理器</td></tr>
+              <tr><td>Windows</td><td><code>F2</code></td><td>重命名选中的文件</td></tr>
+              <tr><td>Windows</td><td><code>Ctrl + Shift + N</code></td><td>新建文件夹</td></tr>
+              <tr><td>Windows</td><td><code>Alt + Tab</code></td><td>在打开的窗口之间切换</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>顺手学会的电脑常识</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>这件事</th><th>为什么</th><th>怎么做</th></tr></thead>
+            <tbody>
+              <tr><td>后缀名决定文件身份</td><td><code>.html</code> 是网页，<code>.css</code> 是样式，<code>.js</code> 是脚本，<code>.txt</code> 只是纯文本</td><td>先在文件夹里打开「查看 → 文件扩展名」</td></tr>
+              <tr><td>斜杠方向不一样</td><td>网址和代码里用 <code>/</code>，Windows 本机路径用 <code>\</code></td><td>写网页路径一律用 <code>/</code></td></tr>
+              <tr><td><code>.zip</code> 不是网页</td><td>它是打包，只是把一堆文件装进一个盒子</td><td>先右键解压，再改里面的文件</td></tr>
+              <tr><td>中文名和空格容易出事</td><td>服务器和网址对它们不友好，容易出现裂图、404</td><td>文件名用英文小写，需要分隔就用短横线</td></tr>
+              <tr><td>中文乱码是编码问题</td><td>文件存的时候用的编码和浏览器读的不一致</td><td>保存时选 UTF-8，页面里声明 charset</td></tr>
+              <tr><td>改坏了要能退</td><td>网页没有"自动保存历史"这回事</td><td>整个文件夹复制一份，名字带上日期</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout life">
+          <span class="callout-tag">别背，用着用着就会了</span>
+          <p>这些不是什么高深知识，是每天都会碰到的手边工具。快捷键先记住三五个，剩下的用一次记一次，比一次背二十个管用。</p>
+        </div>
+      </section>
+
+      <section class="chapter ending">
+        <div class="chapter-head">
+          <span class="chapter-num">15</span>
+          <h2>最后一句</h2>
+        </div>
+        <p class="lead">网站不是一次做成的，是改出来的。</p>
+        <p>你不需要先学会所有东西再动手。先把一个只有"你好，世界"的页面传上网，拿到那个链接，再去改颜色、加图片、加页面。每一次改动都比空想有用。</p>
+        <h3>接下来可以往哪走</h3>
+        <div class="grid-3">
+          <div class="mini-card">
+            <h3>换成自己的内容</h3>
+            <p>改标题、换图片、写一段真实的介绍。网站里有了你的东西，才算你的。</p>
+          </div>
+          <div class="mini-card">
+            <h3>再学一点排版</h3>
+            <p>CSS 的 flex 和 grid 能做出两栏、卡片、居中的布局，够你用好一阵子。</p>
+          </div>
+          <div class="mini-card">
+            <h3>要存数据再往后</h3>
+            <p>登录、留言、后台管理，才需要服务器和数据库。现在完全不用碰。</p>
+          </div>
+        </div>
+        <p>不想再手抄代码，就把<a href="starter.zip" download>示例文件</a>下载下来，在能跑的基础上改，比从零开始快得多。想加内容、报错误，或者看看别人在做什么，去<a href="community.html">社区与反馈</a>。</p>
+        <div class="callout life">
+          <span class="callout-tag">记住这个顺序</span>
+          <p>先能打开，再能看懂，然后能好看，最后才是能赚钱。绝大多数人卡在第一步，是因为想一次做到第四步。</p>
+        </div>
+        <p class="sign">现在，去建那个文件夹吧。</p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<button class="toc-fab" id="tocFab" type="button" aria-label="打开目录">目录</button>
+<div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+<aside class="toc-drawer" id="tocDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <strong>目录</strong>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="drawer-nav" id="drawerNav"></nav>
+</aside>
+
+<footer class="footer">
+  <p>小白搭站说明书 · 用最直白的话，讲最基础的事</p>
+  <nav class="pager">
+    <span class="pager-label">下一篇</span>
+    <a href="community.html">社区与反馈 →</a>
+  </nav>
+  <p class="footer-top"><a href="#top">回到顶部</a></p>
+</footer>
+
+<script src="status.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -4,7 +4,7 @@ const GISCUS = {
   repo: "123sensei/xiaobai-site-discussions",
   repoId: "R_kgDOV496XA",
   category: "Announcements",
-  categoryId: "DIC_kwDOV496XM4D1zf0"
+  categoryId: "DIC_kwDOV496XM4DLzfD"
 };
 
 const BANNED_HINTS = ["加微信", "刷单", "代开发票", "博彩"];

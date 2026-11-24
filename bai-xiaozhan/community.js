@@ -3,8 +3,8 @@ const FEEDBACK_EMAIL = "3989685170@qq.com";
 const GISCUS = {
   repo: "123sensei/xiaobai-site-discussions",
   repoId: "R_kgDOV496XA",
-  category: "Announcements",
-  categoryId: "DIC_kwDOV496XM4DLzfD"
+  category: "General",
+  categoryId: "DIC_kwDOV496XM4DLzfE"
 };
 
 const BANNED_HINTS = ["加微信", "刷单", "代开发票", "博彩"];
